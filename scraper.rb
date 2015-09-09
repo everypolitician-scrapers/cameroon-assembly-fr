@@ -41,8 +41,6 @@ terms.each do |term|
     data.delete :birth_date if data[:birth_date].start_with?('2014') 
     data[:photo] = URI.join(url, URI.escape(data[:photo])).to_s if data.key?(:photo) && !data[:photo].start_with?('http')
     data[:photo] &&= data[:photo].gsub 'gestionLoisLegislatures/gestionLoisLegislatures', 'gestionLoisLegislatures'
-    data[:birth_date] = URI.join(url, URI.escape(data[:photo])).to_s if data.key?(:photo) && !data[:photo].start_with?('http')
-    puts data
     ScraperWiki.save_sqlite([:id, :term], data)
   end
 end
